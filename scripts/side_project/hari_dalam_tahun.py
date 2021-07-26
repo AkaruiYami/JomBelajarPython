@@ -10,7 +10,7 @@ input_tahun = int(input("Masukkan Tahun: "))
 tahun_lompat = False
 
 if input_tahun % 4 == 0:
-    if input_tahun % 100 == 0 and input_tahun % 400 ==0:
+    if input_tahun % 100 == 0 and input_tahun % 400 == 0:
         tahun_lompat = True
 
     if input_tahun % 100 != 0:
