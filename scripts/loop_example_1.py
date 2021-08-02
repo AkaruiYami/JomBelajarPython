@@ -26,6 +26,11 @@ else:
     print("Semuah buah sudah di semak.")
 
 
+# print each element in list together with their count
+for i, buah in enumerate(buah_tempatan):
+    print(f"{i}: {buah}")
+
+
 # go through each character inside the string
 nama = "AkaruiYami Code"
 for huruf in nama:
