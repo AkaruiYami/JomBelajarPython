@@ -67,12 +67,14 @@ def contoh9():
 
 
 def contoh10():
+    #~ Clear List
     my_list = [1, "Hello", True]
     my_list.clear()
     print(f"{my_list = }")
 
 
 def contoh11():
+    #~ Take out item at certain index from the list
     my_list = [1, "Hello", True]
     x = my_list.pop(1)
     print(f"{my_list = }")
