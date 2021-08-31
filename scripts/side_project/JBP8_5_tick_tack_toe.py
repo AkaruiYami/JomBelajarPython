@@ -1,55 +1,102 @@
+"""
+    Game Tick Tack Toe in Terminal
+    
+    2 Players Game
+    
+    - Start with O
+    - The first player able to create 3 consucutive line of their shape, win
+    - The game end up draw if no player able to create 3 consucutive line after the board is full
+    - User need to input coordinate of the box -> xy
+    
+    Example:
+        Input:
+            12
+        Output:
+            |   |   |   |
+            | O |   |   |
+            |   |   |   |
+            
+        Input:
+            22
+        Output:
+            |   |   |   |
+            | O | X |   |
+            |   |   |   |
+"""
 import os
 
-
-def draw(board):
-    for row in board:
-        print(" | ".join(map(str, row)))
-
-
-def check_for_win(board, shape):
-    for i in range(3):
-        # check for rows
-        if board[i][0] == shape and board[i][1] == shape and board[i][2] == shape:
-            return shape
-        # check for columns
-        if board[0][i] == shape and board[1][i] == shape and board[2][i] == shape:
-            return shape
-
-    # check for diagonal1
-    if board[0][0] == shape and board[1][1] == shape and board[2][2] == shape:
-        return shape
-    # check for diagonal2
-    if board[0][2] == shape and board[1][1] == shape and board[2][0] == shape:
-        return shape
-
-
-board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+board_data = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]]
 turns = 0
 
+
+if os.name == "posix":
+    clear_cmd = "clear"
+else:
+    clear_cmd = "cls"
+
+
+def draw_board(board_data):
+    for row in board_data:
+        print(" | ".join(row))
+
+
+def check_for_win(board_data, player):
+    for i in range(3):
+        # check for each row
+        if (
+            board_data[i][0] == player
+            and board_data[i][1] == player
+            and board_data[i][2] == player
+        ):
+            return player
+        # check for each column
+        if (
+            board_data[0][i] == player
+            and board_data[1][i] == player
+            and board_data[2][i] == player
+        ):
+            return player
+
+    if (
+        board_data[0][0] == player
+        and board_data[1][1] == player
+        and board_data[2][2] == player
+    ):
+        return player
+
+    if (
+        board_data[0][2] == player
+        and board_data[1][1] == player
+        and board_data[2][0] == player
+    ):
+        return player
+
+
+os.system(clear_cmd)
 while True:
-    turns += 1
-    draw(board)
+    draw_board(board_data)
+    player = "O" if turns % 2 == 0 else "X"
 
-    shape = "X" if turns % 2 == 0 else "O"
+    player_move = input(f"[{player}] :   ")
+    x = int(player_move[0]) - 1
+    y = int(player_move[1]) - 1
 
-    move = input(f"[{shape}] :   ")
-    x = int(move[0]) - 1
-    y = int(move[1]) - 1
-
-    if board[y][x] != 0:
-        print("Cannot make a move on that square!")
+    if board_data[y][x] != "-":
+        print("Cannot move at that box!")
         continue
 
-    board[y][x] = shape
+    board_data[y][x] = player
 
-    if check_for_win(board, shape) is not None:
-        print(f"\n'{shape}' has won the match!")
-        draw(board)
+    if check_for_win(board_data, player):
+        print(f"\n{player} won the game!")
+        draw_board(board_data)
         break
 
-    if turns == 9:
+    cell_data = board_data[0] + board_data[1] + board_data[2]
+    if "-" not in cell_data:
         print("\nDraw!")
-        draw(board)
+        draw_board(board_data)
         break
 
-    os.system("cls")
+    turns += 1
+    os.system(clear_cmd)
