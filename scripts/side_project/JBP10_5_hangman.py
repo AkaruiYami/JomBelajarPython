@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
         if len(letter_to_guess) == 0:
             print("Anda sudah menang!")
-            print(f"Perkataan Mister: {random_word.upper()}")
+            print(f"Perkataan Misteri: {random_word.upper()}")
             break
 
         letter_guessed.add(guess)
