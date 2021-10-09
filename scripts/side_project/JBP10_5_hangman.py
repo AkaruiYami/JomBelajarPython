@@ -34,12 +34,9 @@ animal_list = (
 )
 
 def print_board(word, letter_to_guess):
-    for c in word:
-        if c in letter_to_guess:
-            print(" _ ", end="")
-        else:
-            print(f" {c} ".upper(), end="")
-    print()
+    for c in letter_to_guess:
+        word = word.replace(c, "_")
+    print(word)
 
 if __name__ == "__main__":
     random_word = choice(animal_list)
