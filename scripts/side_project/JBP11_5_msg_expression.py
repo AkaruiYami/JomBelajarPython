@@ -25,7 +25,7 @@
 """
 
 
-def get_reponse(list_people):
+def get_response(list_people):
     msg = {
         1: "Hello, {}.",
         2: "Hello, {} and {}.",
@@ -40,5 +40,5 @@ def get_reponse(list_people):
 if __name__ == "__main__":
     names = input().split(",")
     names = [name.strip() for name in names]
-    msg = get_reponse(names)
+    msg = get_response(names)
     print(msg)
