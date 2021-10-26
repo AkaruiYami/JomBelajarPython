@@ -5,9 +5,8 @@ turns = 1
 running = True
 
 
-def print_board(board_data):
-    board_row = board_data.split("/")
-    for row in board_row:
+def print_board(board):
+    for row in board.split("/"):
         print("\t" + row)
 
 
