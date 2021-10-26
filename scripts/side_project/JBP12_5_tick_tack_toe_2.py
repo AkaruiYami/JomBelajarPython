@@ -1,3 +1,28 @@
+"""
+    Game Tick Tack Toe in Terminal
+    
+    2 Players Game
+    
+    - Start with O
+    - The first player able to create 3 consucutive line of their shape, win
+    - The game end up draw if no player able to create 3 consucutive line after the board is full
+    - User need to input coordinate of the box -> n
+    
+    Example:
+        Input:
+            4
+        Output:
+            | 1  | 2  |  3 |
+            | O  | 5  |  6 |
+            | 7  | 8  |  9 |
+            
+        Input:
+            5
+        Output:
+            | 1  | 2  |  3 |
+            | O  | X  |  6 |
+            | 7  | 8  |  9 |
+"""
 import os
 
 board = "1|2|3/4|5|6/7|8|9"
@@ -48,5 +73,7 @@ if __name__ == "__main__":
 
         turns += 1
     else:
+        print("#" * 24)
+        print("GAME OVER!")
         print("#" * 24)
         print_board(board)
