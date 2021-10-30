@@ -34,6 +34,7 @@ board = "1|2|3/4|5|6/7|8|9"
 turns = 1
 running = True
 
+
 def print_board(board):
     for row in board.split("/"):
         print(row)
@@ -56,7 +57,7 @@ def check_for_win(plr, board):
 
 if __name__ == "__main__":
     while running:
-        plr = "X" if turns%2==0 else "O"
+        plr = "X" if turns % 2 == 0 else "O"
         print(f"{plr}'s Turn")
         print_board(board)
         move = input(" $  ")
@@ -66,7 +67,9 @@ if __name__ == "__main__":
             board = board.replace(move, plr)
             plr_win = check_for_win(plr, board)
             if plr_win or turns == 9:
-                print(f"Player '{plr}' has won the game!") if plr_win else print("DRAW!")
+                print(f"Player '{plr}' has won the game!") if plr_win else print(
+                    "DRAW!"
+                )
                 print_board(board)
                 running = False
             turns += 1
