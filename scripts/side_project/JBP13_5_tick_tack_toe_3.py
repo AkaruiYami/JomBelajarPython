@@ -1,5 +1,5 @@
 import os
-
+import time
 
 class Board:
     def __init__(self):
@@ -11,11 +11,12 @@ class Board:
             if i % 3 == 0:
                 print()
 
-    def update_cell(self, cell, turn):
-        if self.cells[cell].isdecimal():
-            self.cells[cell] = turn
+    def update_cell(self, cell_index, player_shape):
+        if self.cells[cell_index].isdecimal():
+            self.cells[cell_index] = player_shape
             return True
         print("Cannot move to that space! Try again.")
+        time.sleep(1)
         return False
 
 
@@ -24,27 +25,16 @@ class Game:
         self.turns = 0
         self.board = Board()
 
-    def update(self):
-        os.system(self._clear_command())
-        self.board.render()
-        _turn = "X" if self.turns % 2 == 0 else "O"
-        _input = self.get_input()
-        if _input == -1:
-            return
-        if self.board.update_cell(_input, _turn):
-            if self._check_for_win():
-                self._end_game(_turn)
-            self.turns += 1
-            if self.turns > 9:
-                self._end_game(None)
-
     def get_input(self):
         _input = input("$  ")
         if _input.lower() in ["q", "quit", "exit"]:
             self.running = False
             return -1
-        else:
+        elif _input.isdecimal():
             return int(_input)
+        else:
+            print("Invalid Input!")
+            return 0
 
     def run(self):
         self.running = True
@@ -52,6 +42,21 @@ class Game:
         while self.running:
             self.update()
         self.board.render()
+
+    def update(self):
+        self._clear_terminal()
+        self.board.render()
+        _turn = "X" if self.turns % 2 == 0 else "O"
+        print(f"Turn {_turn}")
+        _input = self.get_input()
+        if _input < 0:
+            return
+        if self.board.update_cell(_input, _turn):
+            if self._check_for_win():
+                self._end_game(_turn)
+            self.turns += 1
+            if self.turns > 9:
+                self._end_game(None)
 
     def _check_for_win(self):
         _cells = self.board.cells
@@ -70,16 +75,17 @@ class Game:
 
     def _end_game(self, winner):
         if winner:
-            print(f"{winner.upper()} has won the game!")
+            print(f"{winner} has won the game!")
         else:
             print("Draw!")
         self.running = False
 
-    def _clear_command(self):
+    def _clear_terminal(self):
         if os.name == "nt":
-            return "cls"
+            _command = "cls"
         else:
-            return "clear"
+            _command = "clear"
+        os.system(_command)
 
 
 if __name__ == "__main__":
