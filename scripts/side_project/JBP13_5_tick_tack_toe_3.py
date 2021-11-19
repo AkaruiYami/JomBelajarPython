@@ -1,9 +1,10 @@
 import os
 import time
 
+
 class Board:
     def __init__(self):
-        self.cells = dict([(i, str(i)) for i in range(1, 10)])
+        self.cells = {i: str(i) for i in range(1, 10)}
 
     def render(self):
         for i, cell in self.cells.items():
