@@ -1,0 +1,33 @@
+Text:
+    - str  -> "12"
+    - str  -> 'hello'
+
+Numerical:
+    - int     ->  12
+    - float   ->  12.5
+    - complex ->  12j
+
+Sequence:
+    - list   ->   ["hello", 12, 1.12]
+    - tuple  ->   ('hello', 24, 2j)
+    - range  ->   range(6)
+
+Mapping:
+    - dict  ->    { "key1" : 12, "key2" : "value2" }
+
+Set:
+    - set        ->   {True, 'hello', 23}
+    - frozenset  ->   frozeset({true, 'hello', 23})
+
+Boolean:
+    - bool  ->    True
+    - bool  ->    False
+
+Binary:
+    - bytes      ->   b'hello'
+    - bytearray  ->   bytearray(7)
+    - memoryview ->   memoryview(bytes(7))
+
+
+How to get data type:
+    - use type()
