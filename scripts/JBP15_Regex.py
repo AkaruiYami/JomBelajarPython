@@ -26,6 +26,9 @@ some_text = """There is several emails inside this text.
 One of them is test@somemail.com. There is also cubaan@yey.com.
 Lastly we have cubatest@mail.gov.my and of course all of this email is a fake one!"""
 
-email_pattern = re.compile(r"\w+@\w+(?:\.[a-zA-Z]{2,})+")
-x = email_pattern.findall(some_text)
-print(x)
+email_pattern = r"\w+@\w+(?:\.[a-zA-Z]{2,})+"
+email_pattern_obj = re.compile(r"\w+@\w+(?:\.[a-zA-Z]{2,})+")
+x = re.findall(email_pattern, some_text)
+y = email_pattern_obj.findall(some_text)
+print(f"{x = }")
+print(f"{y = }")
